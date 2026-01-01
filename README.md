@@ -25,7 +25,7 @@ pkg update && pkg upgrade -y
 pkg install python git -y
 
 # Клонирование репозитория
-git clone https://github.com/PriZroK5/pezlo-session-manager.git
+git clone https://github.com/PriZroK5/TermFreezePzk.git
 
 # Переход в папку проекта
 cd pezlo-session-manager
