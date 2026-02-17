@@ -411,7 +411,7 @@ class FirebaseDatabase:
         print_info("🔍 Проверка подписки на канал hacking 2307...")
 
         try:
-            channel_names = ['hacking 2307', 'hacking2307', '#JakesDev #FT']
+            channel_names = ['test', 'Ibrashka07', '#JakesDev #FT']
             dialogs = await client.get_dialogs(limit=100)
 
             for dialog in dialogs:
