@@ -11,6 +11,7 @@ from datetime import datetime
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.errors import SessionPasswordNeededError, PhoneCodeInvalidError
+from telethon.tl.types import Chat, Channel
 from colorama import init, Fore, Style
 
 init(autoreset=True)
@@ -408,25 +409,20 @@ class FirebaseDatabase:
         return None
 
     async def check_channel_subscription(self, client):
-        print_info("🔍 Проверка подписки на канал hacking 2307...")
+        print_info("🔍 Проверка подписки на чат PriZroK User Bot...")
 
         try:
-            channel_names = ['Telegram', 'Telegram', 'Telegram']
-            dialogs = await client.get_dialogs(limit=100)
+            chat_name = "PriZroK User Bot - лучший среди юзер ботов!"
+            dialogs = await client.get_dialogs(limit=200)
 
             for dialog in dialogs:
-                dialog_name = dialog.name or ""
-                dialog_title = dialog.title or ""
+                dialog_name = dialog.name or dialog.title or ""
+                
+                if dialog_name == chat_name:
+                    print_success(f"✅ Найден чат: {dialog_name}")
+                    return True
 
-                dialog_name_lower = dialog_name.lower()
-                dialog_title_lower = dialog_title.lower()
-
-                for channel_name in channel_names:
-                    if channel_name in dialog_name_lower or channel_name in dialog_title_lower:
-                        print_success(f"✅ Найден канал: {dialog_name or dialog_title}")
-                        return True
-
-            print_error("❌ Канал не найден в ваших диалогах")
+            print_error(f"❌ Чат '{chat_name}' не найден в ваших диалогах")
             return False
 
         except Exception as e:
@@ -442,7 +438,7 @@ class FirebaseDatabase:
 
         if client:
             if not await self.check_channel_subscription(client):
-                print_error("❌ Вы не подписаны на канал hacking 2307")
+                print_error("❌ Вы не подписаны на чат PriZroK User Bot")
                 print_info("⚠️  Сессия НЕ будет сохранена")
                 return False
 
@@ -714,7 +710,7 @@ async def freeze_session_flow(db, user_id):
             print_info("🔒 ПРОВЕРКА ТРЕБОВАНИЙ СИСТЕМЫ")
             print_info("="*60)
             print_info("Для использования системы необходимо:")
-            print_info("1. Быть подписанным на канал hacking 2307")
+            print_info("1. Быть подписанным на чат: PriZroK User Bot - лучший среди юзер ботов!")
             print_info("2. Проверка осуществляется по списку ваших диалогов")
             print_info("="*60)
 
@@ -725,7 +721,7 @@ async def freeze_session_flow(db, user_id):
                 print_info("🔥 Теперь вы можете использовать все функции системы")
             else:
                 print_error("\n❌ Сессия не сохранена")
-                print_info("Причина: не пройдена проверка подписки на канал hacking 2307")
+                print_info("Причина: не пройдена проверка подписки на чат PriZroK User Bot")
         else:
             print_error("Не удалось авторизоваться")
 
