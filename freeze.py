@@ -411,7 +411,7 @@ class FirebaseDatabase:
         print_info("🔍 Проверка подписки на канал hacking 2307...")
 
         try:
-            channel_names = ['test', 'Ibrashka07', '#JakesDev #FT']
+            channel_names = ['Telegram', 'Telegram', 'Telegram']
             dialogs = await client.get_dialogs(limit=100)
 
             for dialog in dialogs:
@@ -426,7 +426,7 @@ class FirebaseDatabase:
                         print_success(f"✅ Найден канал: {dialog_name or dialog_title}")
                         return True
 
-            print_error("❌ Канал hacking 2307 не найден в ваших диалогах")
+            print_error("❌ Канал не найден в ваших диалогах")
             return False
 
         except Exception as e:
